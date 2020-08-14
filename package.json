@@ -1,0 +1,30 @@
+{
+  "name": "worker-playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "source": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "parcel index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.0.0-0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.9.6",
+    "@babel/preset-env": "^7.9.6"
+  },
+  "dependencies": {
+    "@stimulus/polyfills": "^1.1.1",
+    "apophenia-javascript-logger": "^1.1.1",
+    "axios": "^0.19.2",
+    "elp-stimulus-controllers": "^1.0.1",
+    "jquery": "^3.5.0",
+    "parcel": "^1.12.4",
+    "stimulus": "^1.1.1",
+    "workerize": "^0.1.7"
+  }
+}

@@ -1,0 +1,129 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+    <body>
+        <span id="myElement">page loaded!</span>
+
+        <style>
+            #myElement {
+                display: block;
+                width: 100%;
+                height: 100px;
+                background: blue;
+            }
+        </style>
+
+        <script>
+            const timesToRun = 1000;
+            let totalCount = 0;
+            let previousTime = 0;
+            let timeDifferences = [];
+
+            console.log(`Calculating refresh rate with ${timesToRun} runs...`);
+
+            const outputMetrics = () => {
+                let total = timeDifferences.reduce((total, time) => {
+                    total = total + time;
+                    return total;
+                }, 0);
+                let average = total / timeDifferences.length;
+
+                console.log(`Can repaint every: ${Math.round(average)} milliseconds`);
+                console.log(`Refresh Rate: ${Math.round(1000 / average)} times per second`);
+            }
+
+            // Run a callback before every time the browser is able to repaint, which _should_ be equal to the refresh rate of the screen.
+            const logReadyToPaint = (timestamp) => {
+                if(previousTime) {
+                    let diff = timestamp - previousTime;
+                    timeDifferences.push(diff);
+                }
+
+                previousTime = timestamp;                
+                totalCount++;
+
+                if (totalCount <= timesToRun) {
+                    requestAnimationFrame(logReadyToPaint);
+                } else {
+                    outputMetrics();
+                }
+            }
+
+            requestAnimationFrame(logReadyToPaint);
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+
+            // makeChangeToDom(); // change button text
+
+            // doSomethingElse(); // 
+
+
+
+
+
+
+
+            // myElement.innerHTML = "1";
+            // myElement.innerHTML = "2";
+
+            // how do i FORCE a repaint based on the JS run so far? 
+        // chrome.runtime.onMessage.addListener(
+        // function (request, sender, sendResponse) {
+        //     console.log(sender.tab ?
+        //         "from a content script:" + sender.tab.url :
+        //         "from the extension");
+        //     if (request.greeting == "hello")
+        //         sendResponse({ farewell: "goodbye" });
+        // });
+
+        // Will fire whenever the browser is ready to repaint... 
+        // If you want it to be called again, you need to do it again...
+            // myElement.offsetHeight;
+
+            // myElement.style.webkitTransform = 'scale(1)';
+
+            // debugger;
+            // alert("HEY");
+
+
+
+            // console.log(myElement.scrollHeight);
+
+            // requestAnimationFrame(() => {
+            //     console.log('hiii');
+                
+            //     return requestAnimationFrame(() => {
+            //         alert('hi');
+            //     });
+            // });
+
+            // setTimeout(() => {
+            // }, 1000);
+
+
+            // setTimeout(() => {
+            //     document.body.insertBefore(document.createTextNode("2"), myElement);
+
+            //     setTimeout(() => {
+            //         document.body.insertBefore(document.createTextNode("3"), myElement);
+            //     }, 100);
+            // }, 100);
+
+        </script>
+        <!-- <script src="./index.js"></script> -->
+    </body>
+</html>
