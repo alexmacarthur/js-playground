@@ -4,54 +4,95 @@
     </head>
 
     <body>
-        <span id="myElement">page loaded!</span>
+        <span id="element">original text</span>
 
         <style>
-            #myElement {
-                display: block;
-                width: 100%;
-                height: 100px;
-                background: blue;
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
         </style>
 
         <script>
-            const timesToRun = 1000;
-            let totalCount = 0;
-            let previousTime = 0;
-            let timeDifferences = [];
+            window.addEventListener('load', () => {
 
-            console.log(`Calculating refresh rate with ${timesToRun} runs...`);
+                // const timesToRun = 1000;
+                // let totalCount = 0;
+                // let previousTime = 0;
+                // let timeDifferences = [];
 
-            const outputMetrics = () => {
-                let total = timeDifferences.reduce((total, time) => {
-                    total = total + time;
-                    return total;
-                }, 0);
-                let average = total / timeDifferences.length;
+                // console.log(`Calculating refresh rate with ${timesToRun} runs...`);
 
-                console.log(`Can repaint every: ${Math.round(average)} milliseconds`);
-                console.log(`Refresh Rate: ${Math.round(1000 / average)} times per second`);
-            }
+                // const outputMetrics = () => {
+                //     let total = timeDifferences.reduce((total, time) => {
+                //         total = total + time;
+                //         return total;
+                //     }, 0);
+                //     let average = total / timeDifferences.length;
 
-            // Run a callback before every time the browser is able to repaint, which _should_ be equal to the refresh rate of the screen.
-            const logReadyToPaint = (timestamp) => {
-                if(previousTime) {
-                    let diff = timestamp - previousTime;
-                    timeDifferences.push(diff);
+                //     console.log(`Can repaint every: ${Math.round(average)} milliseconds`);
+                //     console.log(`Refresh Rate: ${Math.round(1000 / average)} times per second`);
+                // }
+
+                // Run a callback before every time the browser is able to repaint, which _should_ be equal to the refresh rate of the screen.
+                // const logReadyToPaint = (timestamp) => {
+                //     if(previousTime) {
+                //         let diff = timestamp - previousTime;
+                //         timeDifferences.push(diff);
+                //     }
+
+                //     previousTime = timestamp;                
+                //     totalCount++;
+
+                //     if (totalCount <= timesToRun) {
+                //         requestAnimationFrame(logReadyToPaint);
+                //     } else {
+                //         outputMetrics();
+                //     }
+                // }
+
+                // requestAnimationFrame(logReadyToPaint);
+
+                // let styleChangeTime;
+                // let logTime;
+
+                // const callback = function (mutationsList, observer) {
+                //     for (let mutation of mutationsList) {
+                //         if (mutation.type === 'attributes') {
+                //             styleChangeTime = Date.now();
+                //             console.log(`The ${mutation.attributeName} attribute was changed at ${styleChangeTime}.`);
+                //         }
+                //     }
+                // };
+
+                // (new MutationObserver(callback)).observe(document.body, { attributes: true });
+                
+                // setTimeout(() => {
+
+
+
+                // console.log(element.innerHTML);
+                function timeout() {
+                    alert("stop!");
                 }
 
-                previousTime = timestamp;                
-                totalCount++;
-
-                if (totalCount <= timesToRun) {
-                    requestAnimationFrame(logReadyToPaint);
-                } else {
-                    outputMetrics();
+                function updateElement() {
+                    const element = document.getElementById('element');
+                    element.innerHTML = "updated text";
                 }
-            }
 
-            requestAnimationFrame(logReadyToPaint);
+                updateElement();
+                setTimeout(timeout, 0);
+
+                requestAnimationFrame(() => {
+                    // before next repaint
+                    
+                    // after next repaint
+                    requestAnimationFrame(() => {
+                        alert("stop!");
+                    });
+                });
 
 
 
@@ -62,6 +103,27 @@
 
 
 
+
+
+
+                // console.log(element.innerHTML);
+
+                // alert('STOP');
+                    // alert();
+                // }, 100);
+                
+
+                // logTime = Date.now();
+                // console.log(`Logged at ${logTime}.`);
+                // console.log(logTime - styleChangeTime);
+
+
+
+
+
+
+
+            });
 
 
 
@@ -77,8 +139,8 @@
 
 
 
-            // myElement.innerHTML = "1";
-            // myElement.innerHTML = "2";
+            // element.innerHTML = "1";
+            // element.innerHTML = "2";
 
             // how do i FORCE a repaint based on the JS run so far? 
         // chrome.runtime.onMessage.addListener(
@@ -92,16 +154,16 @@
 
         // Will fire whenever the browser is ready to repaint... 
         // If you want it to be called again, you need to do it again...
-            // myElement.offsetHeight;
+            // element.offsetHeight;
 
-            // myElement.style.webkitTransform = 'scale(1)';
+            // element.style.webkitTransform = 'scale(1)';
 
             // debugger;
             // alert("HEY");
 
 
 
-            // console.log(myElement.scrollHeight);
+            // console.log(element.scrollHeight);
 
             // requestAnimationFrame(() => {
             //     console.log('hiii');
@@ -116,10 +178,10 @@
 
 
             // setTimeout(() => {
-            //     document.body.insertBefore(document.createTextNode("2"), myElement);
+            //     document.body.insertBefore(document.createTextNode("2"), element);
 
             //     setTimeout(() => {
-            //         document.body.insertBefore(document.createTextNode("3"), myElement);
+            //         document.body.insertBefore(document.createTextNode("3"), element);
             //     }, 100);
             // }, 100);
 
