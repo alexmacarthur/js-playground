@@ -20,7 +20,7 @@
   "dependencies": {
     "@stimulus/polyfills": "^1.1.1",
     "apophenia-javascript-logger": "^1.1.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "elp-stimulus-controllers": "^1.0.1",
     "jquery": "^3.5.0",
     "parcel": "^1.12.4",
